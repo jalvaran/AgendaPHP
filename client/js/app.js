@@ -17,6 +17,7 @@ class EventsManager {
           contentType: false,
           type: 'GET',
           success: (data) =>{
+              console.log(data);
             if (data.msg=="OK") {
               this.poblarCalendario(data.eventos)
             }else {
@@ -32,13 +33,16 @@ class EventsManager {
     }
 
     poblarCalendario(eventos) {
+        var f = new Date();
+        var FechaActual=f.getFullYear()+"-"+(("0" + (f.getMonth() + 1)).slice(-2))+"-"+(("0" + f.getDate()).slice(-2));
+        console.log(FechaActual)
         $('.calendario').fullCalendar({
             header: {
         		left: 'prev,next today',
         		center: 'title',
         		right: 'month,agendaWeek,basicDay'
         	},
-        	defaultDate: '2016-11-01',
+        	defaultDate: FechaActual,
         	navLinks: true,
         	editable: true,
         	eventLimit: true,
